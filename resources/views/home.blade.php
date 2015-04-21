@@ -1,17 +1,12 @@
-@extends('app')
+@extends('layouts/master')
 
 @section('content')
-<div class="container">
-	<div class="row">
-		<div class="col-md-10 col-md-offset-1">
-			<div class="panel panel-default">
-				<div class="panel-heading">Home</div>
-
-				<div class="panel-body">
-					You are logged in!
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+  <section class="blurbs">
+    <div class="ui centered grid">
+      <div class="twelve wide centered column">
+        <h1 class="ui center aligned header">My name is Pierce Moore.</h1>
+        <h2 class="ui center aligned header">I spend my time building things on the web.</h2>
+      </div>
+    </div>
+  </section>
 @endsection

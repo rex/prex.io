@@ -11,27 +11,44 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
-
-Route::get('home', 'HomeController@index');
-
 Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
+  'auth' => 'Auth\AuthController',
+  'password' => 'Auth\PasswordController',
 ]);
 
-Route::group(['domain' => 'local-api.prex.io', 'domain' => 'api.prex.io'], function() {
-  // All API routes
-});
+/**
+ *  In order to make multiple subdomain groups possible, declare all routes
+ *  in separate function blocks and then map them to each group.
+ */
+$api_routes = function() {
+  //
+};
 
-Route::group(['domain' => 'local-webhooks.prex.io', 'domain' => 'webhooks.prex.io'], function() {
-  // All Webhooks routes
-});
+$webhook_routes = function() {
+  //
+};
 
-Route::group(['domain' => 'local-admin.prex.io', 'domain' => 'admin.prex.io'], function() {
-  // All Admin routes
-});
+$admin_routes = function() {
+  //
+};
 
-Route::group(['domain' => 'local.prex.io', 'domain' => 'prex.io'], function() {
-  // All Site routes
-});
+$site_routes = function() {
+  Route::get('/', 'HomeController@index');
+  //
+};
+
+// API Routes
+Route::group(['domain' => 'local-api.prex.io'], $api_routes);
+Route::group(['domain' => 'api.prex.io'], $api_routes);
+
+// Webhook Routes
+Route::group(['domain' => 'local-webhooks.prex.io'], $webhook_routes);
+Route::group(['domain' => 'webhooks.prex.io'], $webhook_routes);
+
+// Admin Routes
+Route::group(['domain' => 'local-admin.prex.io'], $admin_routes);
+Route::group(['domain' => 'admin.prex.io'], $admin_routes);
+
+// Site Routes
+Route::group(['domain' => 'local.prex.io'], $site_routes);
+Route::group(['domain' => 'prex.io'], $site_routes);
