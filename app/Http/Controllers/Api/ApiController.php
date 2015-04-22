@@ -26,7 +26,6 @@ abstract class ApiController extends Controller {
       'message' => 'This a base endpoint for the prex.io data api. Try another endpoint to get the information you seek.',
       'endpoint_namespace' => $this->route_namespace,
       'namespace_endpoints' => $this->generateSubRouteUrls(),
-      'endpoints' => EndpointGenerator::generate(),
       'metadata' => $this->metadata()
     ]);
   }

@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6b3a8f61863889f4f7a26979d4802deb",
+    "hash": "741fe90caa914868b4efa590eb41d083",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -185,6 +185,49 @@
                 "preload"
             ],
             "time": "2015-04-15 21:59:30"
+        },
+        {
+            "name": "cosenary/instagram",
+            "version": "v2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cosenary/Instagram-PHP-API.git",
+                "reference": "fbf4c82e2cc7e9a7fd6f9fd7bba1fd2c506102a5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cosenary/Instagram-PHP-API/zipball/fbf4c82e2cc7e9a7fd6f9fd7bba1fd2c506102a5",
+                "reference": "fbf4c82e2cc7e9a7fd6f9fd7bba1fd2c506102a5",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MetzWeb\\Instagram\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Metz",
+                    "email": "christian-metz1@gmx.net",
+                    "homepage": "http://metzweb.net"
+                }
+            ],
+            "description": "An easy-to-use PHP Class for accessing Instagram's API.",
+            "homepage": "https://github.com/cosenary/Instagram-PHP-API",
+            "keywords": [
+                "api",
+                "instagram"
+            ],
+            "time": "2014-11-29 13:10:42"
         },
         {
             "name": "danielstjules/stringy",
@@ -2244,6 +2287,60 @@
                 "vps"
             ],
             "time": "2015-04-16 07:35:28"
+        },
+        {
+            "name": "vinkla/instagram",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vinkla/instagram.git",
+                "reference": "e0d8a2c275b6a844f517efd6b498a348244361c2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vinkla/instagram/zipball/e0d8a2c275b6a844f517efd6b498a348244361c2",
+                "reference": "e0d8a2c275b6a844f517efd6b498a348244361c2",
+                "shasum": ""
+            },
+            "require": {
+                "cosenary/instagram": "~2.0",
+                "graham-campbell/manager": "~2.0",
+                "illuminate/contracts": "~5.0",
+                "illuminate/support": "~5.0",
+                "php": ">=5.4.7"
+            },
+            "require-dev": {
+                "graham-campbell/testbench": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Vinkla\\Instagram\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vincent Klaiber",
+                    "email": "me@vinkla.com",
+                    "homepage": "http://vinkla.com"
+                }
+            ],
+            "description": "Laravel wrapper for the Instagram API.",
+            "homepage": "https://github.com/vinkla/instagram",
+            "keywords": [
+                "api",
+                "facebook",
+                "image",
+                "images",
+                "instagram",
+                "laravel",
+                "media"
+            ],
+            "time": "2015-02-03 10:28:11"
         },
         {
             "name": "vlucas/phpdotenv",

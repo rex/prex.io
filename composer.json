@@ -9,7 +9,9 @@
 		"aws/aws-sdk-php-laravel": "~2.0",
 		"thujohn/twitter": "~2.0",
 		"graham-campbell/digitalocean": "~1.0",
-		"kriswallsmith/buzz": "~0.10"
+		"kriswallsmith/buzz": "~0.10",
+		"vinkla/instagram": "~2.0",
+		"thujohn/twitter": "~2.0"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",

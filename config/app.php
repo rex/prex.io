@@ -148,7 +148,9 @@ return [
 		/*
 		 * Vendor & External Providers
 		 */
-		'GrahamCampbell\DigitalOcean\DigitalOceanServiceProvider'
+		'GrahamCampbell\DigitalOcean\DigitalOceanServiceProvider',
+		'Vinkla\Instagram\InstagramServiceProvider',
+		'Thujohn\Twitter\TwitterServiceProvider'
 
 	],
 
