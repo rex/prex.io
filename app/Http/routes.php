@@ -1,5 +1,13 @@
 <?php
 
+function route_listing($namespace) {
+  return response()->json( App\Helpers\LoadedRoutes::listing([
+    'routes' => Route::getRoutes(),
+    'namespace' => $namespace,
+    'as_array' => true
+  ]) );
+};
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -21,7 +29,17 @@ Route::controllers([
  *  in separate function blocks and then map them to each group.
  */
 $api_routes = function() {
-  //
+  Route::get('/', 'Api\RootController@index');
+  Route::group(['prefix' => 'digitalocean'], function() {
+    Route::get('/', 'Api\DigitaloceanController@index');
+    Route::get('/droplets', 'Api\DigitaloceanController@droplets');
+    Route::get('/droplets/{droplet_id}', 'Api\DigitaloceanController@droplet');
+  });
+
+  Route::get('/routes', function() { return route_listing('\Api'); });
+  Route::get('/routes_2', function() {
+    return App\Helpers\LoadedRoutes::namespaceRoutes('\Api');
+  });
 };
 
 $webhook_routes = function() {
@@ -38,17 +56,16 @@ $site_routes = function() {
 };
 
 // API Routes
-Route::group(['domain' => 'local-api.prex.io'], $api_routes);
-Route::group(['domain' => 'api.prex.io'], $api_routes);
+if(env('APP_ENV') == 'local') {
+  Route::group(['domain' => 'local-api.prex.io'], $api_routes);
+  Route::group(['domain' => 'local-webhooks.prex.io'], $webhook_routes);
+  Route::group(['domain' => 'local-admin.prex.io'], $admin_routes);
+  Route::group(['domain' => 'local.prex.io'], $site_routes);
+}
 
-// Webhook Routes
-Route::group(['domain' => 'local-webhooks.prex.io'], $webhook_routes);
-Route::group(['domain' => 'webhooks.prex.io'], $webhook_routes);
-
-// Admin Routes
-Route::group(['domain' => 'local-admin.prex.io'], $admin_routes);
-Route::group(['domain' => 'admin.prex.io'], $admin_routes);
-
-// Site Routes
-Route::group(['domain' => 'local.prex.io'], $site_routes);
-Route::group(['domain' => 'prex.io'], $site_routes);
+if(env('APP_ENV') == 'production') {
+  Route::group(['domain' => 'api.prex.io'], $api_routes);
+  Route::group(['domain' => 'webhooks.prex.io'], $webhook_routes);
+  Route::group(['domain' => 'admin.prex.io'], $admin_routes);
+  Route::group(['domain' => 'prex.io'], $site_routes);
+}

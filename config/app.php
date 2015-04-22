@@ -145,6 +145,11 @@ return [
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
 
+		/*
+		 * Vendor & External Providers
+		 */
+		'GrahamCampbell\DigitalOcean\DigitalOceanServiceProvider'
+
 	],
 
 	/*
