@@ -31,15 +31,12 @@ Route::controllers([
 $api_routes = function() {
   Route::get('/', 'Api\RootController@index');
   Route::group(['prefix' => 'digitalocean'], function() {
-    Route::get('/', 'Api\DigitaloceanController@index');
-    Route::get('/droplets', 'Api\DigitaloceanController@droplets');
     Route::get('/droplets/{droplet_id}', 'Api\DigitaloceanController@droplet');
+    Route::get('/droplets', 'Api\DigitaloceanController@droplets');
+    Route::get('/', 'Api\DigitaloceanController@index');
   });
 
-  Route::get('/routes', function() { return route_listing('\Api'); });
-  Route::get('/routes_2', function() {
-    return App\Helpers\LoadedRoutes::namespaceRoutes('\Api');
-  });
+  Route::get('/routes', function() { return dd( Route::getRoutes() ); });
 };
 
 $webhook_routes = function() {
