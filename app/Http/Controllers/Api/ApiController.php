@@ -25,9 +25,15 @@ abstract class ApiController extends Controller {
     return $this->respond([
       'message' => 'This a base endpoint for the prex.io data api. Try another endpoint to get the information you seek.',
       'endpoint_namespace' => $this->route_namespace,
-      'namespace_endpoints' => array_pluck( $this->subRoutes(), 'path' ),
+      'namespace_endpoints' => $this->generateSubRouteUrls(),
       'endpoints' => EndpointGenerator::generate(),
       'metadata' => $this->metadata()
     ]);
+  }
+
+  private function generateSubRouteUrls() {
+    return array_map(function($path) {
+      return ($path == "/") ? asset("/") : asset("/$path");
+    }, array_pluck( $this->subRoutes(), 'path' ) );
   }
 }
