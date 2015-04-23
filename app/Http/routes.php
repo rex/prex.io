@@ -38,10 +38,10 @@ $api_routes = function() {
   });
 
   Route::group(['prefix' => 'mixcloud'], function() {
-    Route::get('/users/{user_id}', 'Api\MixcloudController@user');
+    Route::get('/users/{username}/cloudcasts/{cloudcast_slug}', 'Api\MixcloudController@cloudcast');
+    Route::get('/users/{username}/cloudcasts', 'Api\MixcloudController@cloudcasts');
+    Route::get('/users/{username}', 'Api\MixcloudController@user');
     Route::get('/users', 'Api\MixcloudController@users');
-    Route::get('/cloudcasts/{cloudcast_id}', 'Api\MixcloudController@cloudcast');
-    Route::get('/cloudcasts', 'Api\MixcloudController@cloudcasts');
     Route::get('/', 'Api\MixcloudController@index');
   });
 
@@ -54,20 +54,20 @@ $api_routes = function() {
   });
 
   Route::group(['prefix' => 'instagram'], function() {
+    Route::get('/users/{user_id}/posts', 'Api\InstagramController@posts');
     Route::get('/users/{user_id}', 'Api\InstagramController@user');
     Route::get('/users', 'Api\InstagramController@users');
     Route::get('/posts/{post_id}', 'Api\InstagramController@post');
-    Route::get('/posts', 'Api\InstagramController@posts');
     Route::get('/', 'Api\InstagramController@index');
   });
 
   Route::group(['prefix' => 'soundcloud'], function() {
+    Route::get('/users/{user_id}/tracks', 'Api\SoundcloudController@tracks');
+    Route::get('/users/{user_id}/playlists', 'Api\SoundcloudController@playlists');
     Route::get('/users/{user_id}', 'Api\SoundcloudController@user');
     Route::get('/users', 'Api\SoundcloudController@users');
     Route::get('/tracks/{track_id}', 'Api\SoundcloudController@track');
-    Route::get('/tracks', 'Api\SoundcloudController@tracks');
     Route::get('/playlists/{playlist_id}', 'Api\SoundcloudController@playlist');
-    Route::get('/playlists', 'Api\SoundcloudController@playlists');
     Route::get('/', 'Api\SoundcloudController@index');
   });
 

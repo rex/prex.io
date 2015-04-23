@@ -11,7 +11,9 @@
 		"graham-campbell/digitalocean": "~1.0",
 		"kriswallsmith/buzz": "~0.10",
 		"vinkla/instagram": "~2.0",
-		"thujohn/twitter": "~2.0"
+		"thujohn/twitter": "~2.0",
+		"njasm/laravel5-soundcloud": "dev-master",
+		"guzzlehttp/guzzle": "~4.0"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",

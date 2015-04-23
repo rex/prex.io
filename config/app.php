@@ -150,7 +150,8 @@ return [
 		 */
 		'GrahamCampbell\DigitalOcean\DigitalOceanServiceProvider',
 		'Vinkla\Instagram\InstagramServiceProvider',
-		'Thujohn\Twitter\TwitterServiceProvider'
+		'Thujohn\Twitter\TwitterServiceProvider',
+		'Njasm\Laravel\Soundcloud\SoundcloudProvider'
 
 	],
 
