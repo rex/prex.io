@@ -8,6 +8,11 @@ function route_listing($namespace) {
   ]) );
 };
 
+function json_404() {
+  $current_uri = Request::url();
+  return response()->json([ 'status' => 404, 'message' => "$current_uri is not a valid resource" ], 404);
+}
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -35,6 +40,18 @@ $api_routes = function() {
     Route::get('/droplets/{droplet_id}', 'Api\DigitaloceanController@droplet');
     Route::get('/droplets', 'Api\DigitaloceanController@droplets');
     Route::get('/', 'Api\DigitaloceanController@index');
+  });
+
+  Route::group(['prefix' => 'rubygems'], function() {
+    Route::get('/gems/{gem_name}', 'Api\RubyGemsController@gem');
+    Route::get('/gems', 'Api\RubyGemsController@gems');
+    Route::get('/', 'Api\RubyGemsController@index');
+  });
+
+  Route::group(['prefix' => 'npm'], function() {
+    Route::get('/modules/{module_name}', 'Api\NpmController@module');
+    Route::get('/modules', 'Api\NpmController@modules');
+    Route::get('/', 'Api\NpmController@index');
   });
 
   Route::group(['prefix' => 'mixcloud'], function() {
@@ -129,7 +146,7 @@ $api_routes = function() {
   Route::get('/routes', function() { return dd( Route::getRoutes() ); });
 
   Route::any('{catchall}', function($page) {
-    dd("404! $page requested!");
+    return json_404();
   })->where('catchall', '(.*)');
 };
 
