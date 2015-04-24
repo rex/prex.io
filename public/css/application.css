@@ -2,6 +2,9 @@
 body {
   background: #f0f0f0; }
 
+.pusher {
+  padding-left: 18%; }
+
 a {
   color: #222; }
 
@@ -11,6 +14,14 @@ header {
     font-family: Arvo;
     font-weight: 700;
     font-size: 28px; }
+
+.ui.left.main.sidebar {
+  width: 18%; }
+  .ui.left.main.sidebar .logo.item {
+    padding: 10px;
+    font-family: Arvo;
+    font-weight: 700;
+    font-size: 20px; }
 
 section.blurbs {
   margin-top: 150px; }
