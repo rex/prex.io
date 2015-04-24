@@ -1,16 +1,10 @@
 <?php namespace App\Services;
 
 use GuzzleHttp\Client as Http;
+use App\Services\Traits\JsonService;
 
 class Instagram {
-  public static function fetchJson($endpoint, $response_key = null) {
-    $response = self::client()->get($endpoint);
-
-    if($response_key)
-      return $response->json()[$response_key];
-    else
-      return $response->json();
-  }
+  use JsonService;
 
   public static function users() {
     //

@@ -1,22 +1,12 @@
 <?php namespace App\Services;
 
 use GuzzleHttp\Client as Http;
+use App\Services\Traits\JsonService;
 use App\Models\Mixcloud\User;
 use App\Models\Mixcloud\Cloudcast;
 
 class Mixcloud {
-  /**
-   * @param $endpoint String The URI for the desired endpoint
-   * @param $response_key String If a nested response, return this key from the response array
-   */
-  public static function fetchJson($endpoint, $response_key = null) {
-    $response = self::client()->get($endpoint);
-
-    if($response_key)
-      return $response->json()[$response_key];
-    else
-      return $response->json();
-  }
+  use JsonService;
 
   public static function users() {
   }

@@ -1,15 +1,13 @@
 <?php namespace App\Services;
 
 use GuzzleHttp\Client as Http;
+use App\Services\Traits\JsonService;
 use App\Models\Soundcloud\User;
 use App\Models\Soundcloud\Track;
 use App\Models\Soundcloud\Playlist;
 
 class Soundcloud {
-  public static function fetchJson($endpoint) {
-    $response = self::client()->get($endpoint);
-    return $response->json();
-  }
+  use JsonService;
 
   public static function users() {
     //
