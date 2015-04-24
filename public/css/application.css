@@ -3,7 +3,7 @@ body {
   background: #f0f0f0; }
 
 .pusher {
-  padding-left: 18%; }
+  padding: 0 20px 0 245px; }
 
 a {
   color: #222; }
@@ -16,7 +16,7 @@ header {
     font-size: 28px; }
 
 .ui.left.main.sidebar {
-  width: 18%; }
+  width: 225px; }
   .ui.left.main.sidebar .logo.item {
     padding: 10px;
     font-family: Arvo;

@@ -15,22 +15,49 @@
       <div class="logo item">
         pierce moore
       </div>
-
+      <div class="item">
+        <a href="#" class="ui fluid github button">
+          <i class="github icon"></i>
+          GitHub
+        </a>
+      </div>
       <div class="item">
         <a href="#" class="ui fluid linkedin button">
           <i class="linkedin icon"></i>
           Linkedin
         </a>
       </div>
+      <a href="#" class="item js-digitalocean-status">
+        <b>DIGITALOCEAN STATUS</b>
+      </a>
+      <a href="#" class="item">
+        <b>ACTIVITY FEED</b>
+      </a>
       <div class="item">
         <b>CODE</b>
         <div class="menu">
-          <a href="https://github.com/rex" class="item">
+          <div class="item">
             <i class="github icon"></i>
-            GitHub
+            <b>GitHub</b>
+            <div class="menu">
+              <a href="#" class="item">
+                <div class="ui mini label">32</div>
+                Repositories
+              </a>
+              <a href="#" class="item">
+                <div class="ui mini label">74</div>
+                Gists
+              </a>
+            </div>
+          </div>
+          <a href="#" class="item">
+            <div class="ui mini label">17</div>
+            NPM Modules
           </a>
-          <a href="#" class="item">Node.js / NPM</a>
-          <a href="#" class="item">RubyGems</a>
+          <a href="#" class="item">
+            <div class="ui mini label">2</div>
+            Ruby Gems
+          </a>
         </div>
       </div>
       <div class="item">

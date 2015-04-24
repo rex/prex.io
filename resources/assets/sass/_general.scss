@@ -3,5 +3,5 @@ body {
 }
 
 .pusher {
-  padding-left: $sidebar-width;
+  padding: 0 $pusher-padding 0 $sidebar-width + $pusher-padding;
 }
