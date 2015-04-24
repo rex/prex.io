@@ -15,58 +15,81 @@
       <div class="logo item">
         pierce moore
       </div>
+
       <div class="item">
-        <div class="ui buttons">
-          <a href="https://github.com/rex" class="ui github icon button">
-            <i class="github alternate icon"></i>
+        <a href="#" class="ui fluid linkedin button">
+          <i class="linkedin icon"></i>
+          Linkedin
+        </a>
+      </div>
+      <div class="item">
+        <b>CODE</b>
+        <div class="menu">
+          <a href="https://github.com/rex" class="item">
+            <i class="github icon"></i>
+            GitHub
           </a>
-          <a href="https://facebook.com/mrpiercemoore" class="ui facebook icon button">
-            <i class="facebook icon"></i>
-          </a>
-          <a href="https://twitter.com/kiapierce" class="ui twitter icon button">
-            <i class="twitter icon"></i>
-          </a>
-          <a href="https://soundcloud.com/piercemoore" class="ui soundcloud icon button">
+          <a href="#" class="item">Node.js / NPM</a>
+          <a href="#" class="item">RubyGems</a>
+        </div>
+      </div>
+      <div class="item">
+        <b>MUSIC</b>
+        <div class="menu">
+          <a href="https://soundcloud.com/piercemoore" class="item">
             <i class="soundcloud icon"></i>
+            Soundcloud
+          </a>
+          <a href="#" class="item">
+            Mixcloud
+          </a>
+          <a href="#" class="item">
+            <i class="apple icon"></i>
+            iTunes
+          </a>
+          <a href="#" class="item">
+            <i class="spotify icon"></i>
+            Spotify
+          </a>
+          <a href="#" class="item">
+            <i class="lastfm icon"></i>
+            Last.fm
           </a>
         </div>
       </div>
-      <a class="item">
-        <i class="home icon"></i>
-        Home
-      </a>
-      <a class="item">
-        <i class="block layout icon"></i>
-        Topics
-      </a>
-      <a class="item">
-        <i class="smile icon"></i>
-        Friends
-      </a>
-      <a class="item">
-        <i class="calendar icon"></i>
-        History
-      </a>
-      <a class="item">
-        <i class="mail icon"></i>
-        Messages
-      </a>
-      <a class="item">
-        <i class="chat icon"></i>
-        Discussions
-      </a>
-      <a class="item">
-        <i class="trophy icon"></i>
-        Achievements
-      </a>
-      <a class="item">
-        <i class="shop icon"></i>
-        Store
-      </a>
-      <a class="item">
-        <i class="settings icon"></i>
-        Settings
-      </a>
+      <div class="item">
+        <b>SOCIAL</b>
+        <div class="menu">
+          <a href="https://twitter.com/kiapierce" class="item">
+            <i class="twitter icon"></i>
+            Twitter
+          </a>
+          <a href="https://facebook.com/mrpiercemoore" class="item">
+            <i class="facebook icon"></i>
+            Facebook
+          </a>
+          <a href="#" class="item">
+            <i class="instagram icon"></i>
+            Instagram
+          </a>
+          <a href="#" class="item">
+            <i class="google plus icon"></i>
+            Google+
+          </a>
+          <a href="#" class="item">
+            <i class="reddit icon"></i>
+            Reddit
+          </a>
+          <a href="#" class="item">
+            <i class="skype icon"></i>
+            Skype
+          </a>
+          <a href="#" class="item">
+            <i class="stack exchange icon"></i>
+            StackExchange
+          </a>
+        </div>
+      </div>
     </div>
     <div class="pusher">
       @yield('content')

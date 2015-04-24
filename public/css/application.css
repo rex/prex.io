@@ -21,7 +21,11 @@ header {
     padding: 10px;
     font-family: Arvo;
     font-weight: 700;
-    font-size: 20px; }
+    font-size: 20px;
+    text-align: center; }
+
+.ui.icon.menu > .item {
+  text-align: left; }
 
 section.blurbs {
   margin-top: 150px; }

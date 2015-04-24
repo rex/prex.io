@@ -6,5 +6,12 @@
     font-family: Arvo;
     font-weight: 700;
     font-size: 20px;
+    text-align: center;
+  }
+}
+
+.ui.icon.menu {
+  > .item {
+    text-align: left;
   }
 }
