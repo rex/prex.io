@@ -1,12 +1,34 @@
-section.blurbs {
-  margin-top: 150px;
+$images: (batthern, cubes, escheresque_ste, gridme, noisy_grid, random_grey_variations, tex2res4, triangular, bo_play_pattern, cutcube, gplaypattern, hexellence, purty_wood, retina_wood, tileable_wood_texture, bright_squares, diamond_upholstery, graphy, inflicted, pyramid, struckaxiom, tiny_grid);
 
-  h1.ui.header {
-    font-family: Montserrat, sans-serif;
-    font-weight: 700;
+section {
+  &.blurbs {
+    margin-top: 150px;
+
+    h1.ui.header {
+      font-family: Montserrat, sans-serif;
+      font-weight: 700;
+    }
+
+    h2.ui.header {
+      font-weight: 100;
+    }
   }
 
-  h2.ui.header {
-    font-weight: 100;
+  &.pattern-block {
+    height: 250px;
+
+    @each $image in $images {
+      &.#{$image} {
+        background-image: url(/images/subtle_patterns/#{$image}/#{$image}.png);
+      }
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 48px;
+      color: #fff;
+      text-shadow: 0 1px 4px #999;
+      padding-top: 100px;
+    }
   }
 }

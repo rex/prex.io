@@ -1,9 +1,10 @@
 @import url(http://fonts.googleapis.com/css?family=Arvo:700|Montserrat:700|Raleway:200);
 body {
-  background: #f0f0f0; }
+  background: #f0f0f0;
+  overflow-x: hidden; }
 
 .pusher {
-  padding: 0 20px 0 245px; }
+  padding: 0 0 0 225px; }
 
 a {
   color: #222; }
@@ -34,6 +35,58 @@ section.blurbs {
     font-weight: 700; }
   section.blurbs h2.ui.header {
     font-weight: 100; }
+section.pattern-block {
+  height: 250px; }
+  section.pattern-block.batthern {
+    background-image: url(/images/subtle_patterns/batthern/batthern.png); }
+  section.pattern-block.cubes {
+    background-image: url(/images/subtle_patterns/cubes/cubes.png); }
+  section.pattern-block.escheresque_ste {
+    background-image: url(/images/subtle_patterns/escheresque_ste/escheresque_ste.png); }
+  section.pattern-block.gridme {
+    background-image: url(/images/subtle_patterns/gridme/gridme.png); }
+  section.pattern-block.noisy_grid {
+    background-image: url(/images/subtle_patterns/noisy_grid/noisy_grid.png); }
+  section.pattern-block.random_grey_variations {
+    background-image: url(/images/subtle_patterns/random_grey_variations/random_grey_variations.png); }
+  section.pattern-block.tex2res4 {
+    background-image: url(/images/subtle_patterns/tex2res4/tex2res4.png); }
+  section.pattern-block.triangular {
+    background-image: url(/images/subtle_patterns/triangular/triangular.png); }
+  section.pattern-block.bo_play_pattern {
+    background-image: url(/images/subtle_patterns/bo_play_pattern/bo_play_pattern.png); }
+  section.pattern-block.cutcube {
+    background-image: url(/images/subtle_patterns/cutcube/cutcube.png); }
+  section.pattern-block.gplaypattern {
+    background-image: url(/images/subtle_patterns/gplaypattern/gplaypattern.png); }
+  section.pattern-block.hexellence {
+    background-image: url(/images/subtle_patterns/hexellence/hexellence.png); }
+  section.pattern-block.purty_wood {
+    background-image: url(/images/subtle_patterns/purty_wood/purty_wood.png); }
+  section.pattern-block.retina_wood {
+    background-image: url(/images/subtle_patterns/retina_wood/retina_wood.png); }
+  section.pattern-block.tileable_wood_texture {
+    background-image: url(/images/subtle_patterns/tileable_wood_texture/tileable_wood_texture.png); }
+  section.pattern-block.bright_squares {
+    background-image: url(/images/subtle_patterns/bright_squares/bright_squares.png); }
+  section.pattern-block.diamond_upholstery {
+    background-image: url(/images/subtle_patterns/diamond_upholstery/diamond_upholstery.png); }
+  section.pattern-block.graphy {
+    background-image: url(/images/subtle_patterns/graphy/graphy.png); }
+  section.pattern-block.inflicted {
+    background-image: url(/images/subtle_patterns/inflicted/inflicted.png); }
+  section.pattern-block.pyramid {
+    background-image: url(/images/subtle_patterns/pyramid/pyramid.png); }
+  section.pattern-block.struckaxiom {
+    background-image: url(/images/subtle_patterns/struckaxiom/struckaxiom.png); }
+  section.pattern-block.tiny_grid {
+    background-image: url(/images/subtle_patterns/tiny_grid/tiny_grid.png); }
+  section.pattern-block h1 {
+    text-align: center;
+    font-size: 48px;
+    color: #fff;
+    text-shadow: 0 1px 4px #999;
+    padding-top: 100px; }
 
 
 /*# sourceMappingURL=application.css.map */

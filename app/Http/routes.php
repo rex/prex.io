@@ -159,6 +159,17 @@ $admin_routes = function() {
 };
 
 $site_routes = function() {
+  Route::group(['prefix' => 'helpers'], function() {
+    // Route::get('/patterns/{pattern?}', function($pattern = null) {
+    //   dd("Patterns: $pattern");
+    // });
+    // Route::get('/patterns', 'HelpersController@patterns');
+    Route::get('patterns/{pattern?}', 'HelpersController@patterns');
+    Route::get('/', function() {
+      dd("Helpers");
+    });
+  });
+
   Route::get('/', 'HomeController@index');
   //
 };
