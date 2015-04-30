@@ -99,8 +99,9 @@ $api_routes = function() {
   });
 
   Route::group(['prefix' => 'twitter'], function() {
-    Route::get('/users/{user_id}', 'Api\TwitterController@user');
+    Route::get('/users/{handle}', 'Api\TwitterController@user');
     Route::get('/users', 'Api\TwitterController@users');
+    Route::get('/tweets/latest', 'Api\TwitterController@latestTweet');
     Route::get('/tweets/{tweet_id}', 'Api\TwitterController@tweet');
     Route::get('/tweets', 'Api\TwitterController@tweets');
     Route::get('/media_objects/{media_object_id}', 'Api\TwitterController@media_object');
@@ -169,6 +170,12 @@ $site_routes = function() {
       dd("Helpers");
     });
   });
+
+  Route::get('/js/{slug}', function($slug) {
+    dd($slug);
+
+    return File::get( public_path() .'/js/'. $slug );
+  })->where('slug', '[A-Za-z\/\.]+');
 
   Route::get('/', 'HomeController@index');
   //

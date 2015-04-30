@@ -16,4 +16,12 @@ class TwitterController extends ApiController {
   public function tweet($tweet_id) {
     return $this->respond( Twitter::tweet($tweet_id) );
   }
+
+  public function latestTweet() {
+    return $this->respond( Twitter::latestTweet() );
+  }
+
+  public function user($handle = "self") {
+    return $this->respond( Twitter::user($handle) );
+  }
 }
