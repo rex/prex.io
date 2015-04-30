@@ -1,0 +1,3 @@
+@mixin background-pattern($pattern) {
+  background-image: url(/images/subtle_patterns/#{$pattern}/#{$pattern}.png);
+}

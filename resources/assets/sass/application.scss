@@ -1,6 +1,8 @@
 @import "variables";
+@import "mixins/background-pattern";
 @import "general";
 @import "typography";
 @import "header";
 @import "sidebar";
 @import "pages/home";
+@import "helpers/patterns";

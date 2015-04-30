@@ -1,5 +1,20 @@
-@import url(http://fonts.googleapis.com/css?family=Arvo:700|Montserrat:700|Raleway:200);
+@import url(http://fonts.googleapis.com/css?family=Arvo:700|Montserrat:400,700|Raleway:200);
 
 a {
   color: #222;
+}
+
+section {
+  h1, h2, h3, h4, h5 {
+    font-family: Montserrat;
+
+    &.centered { text-align: center; }
+    &.uppercase { text-transform: uppercase; }
+    &.light { font-weight: 400; }
+    &.roomy { margin: 20px 0 40px 0; }
+  }
+
+  h1.header {
+    //
+  }
 }
