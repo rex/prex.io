@@ -5,6 +5,10 @@
     <!-- <link rel="stylesheet" type="text/css" href="/assets/css/semantic.min.css"> -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.6/semantic.min.css">
     <link rel="stylesheet" type="text/css" href="/css/application.css">
+    <script type="text/javascript">
+      window.PREX_ENV = "{{ $app->environment() }}"
+      window.PREX_ENDPOINTS = {!! json_encode($env_endpoints) !!}
+    </script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.14/angular-ui-router.min.js"></script>
@@ -19,6 +23,7 @@
     @include('partials.sidebar')
 
     <div class="pusher">
+      <h1>{{ $app->environment() }}</h1>
       @yield('content')
     </div>
   </body>

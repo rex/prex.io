@@ -8,7 +8,13 @@ var app = angular
     'app.filters',
     'app.services'
   ])
-  .config(['$interpolateProvider', function($interpolateProvider) {
+  .constant('ENV', PREX_ENV)
+  .config(['$interpolateProvider', 'RestangularProvider', function($interpolateProvider, RestangularProvider) {
+    console.log(" > window.PREX_ENV", PREX_ENV)
+    console.log(" > window.PREX_ENDPOINTS", PREX_ENDPOINTS)
+
     $interpolateProvider.startSymbol('<<')
     $interpolateProvider.endSymbol('>>')
+
+    RestangularProvider.setBaseUrl(PREX_ENDPOINTS.api_root)
   }])

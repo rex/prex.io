@@ -14,7 +14,7 @@
       <h1 class="centered uppercase light roomy">My Footprint on the Web</h1>
 
       <div class="ui grid">
-        <div class="eight wide column">
+        <div class="sixteen wide column">
           <card-github></card-github>
         </div>
 
@@ -36,6 +36,10 @@
 
         <div class="eight wide column">
           <card-twitter></card-twitter>
+        </div>
+
+        <div class="eight wide column">
+          <card-instagram></card-instagram>
         </div>
 
         <div class="eight wide column">
