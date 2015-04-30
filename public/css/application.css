@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Arvo:700|Montserrat:700|Raleway:200);
+@import url(http://fonts.googleapis.com/css?family=Arvo:700|Montserrat:400,700|Raleway:200);
 body {
   background: #f0f0f0;
   overflow-x: hidden; }
@@ -8,6 +8,17 @@ body {
 
 a {
   color: #222; }
+
+section h1, section h2, section h3, section h4, section h5 {
+  font-family: Montserrat; }
+  section h1.centered, section h2.centered, section h3.centered, section h4.centered, section h5.centered {
+    text-align: center; }
+  section h1.uppercase, section h2.uppercase, section h3.uppercase, section h4.uppercase, section h5.uppercase {
+    text-transform: uppercase; }
+  section h1.light, section h2.light, section h3.light, section h4.light, section h5.light {
+    font-weight: 400; }
+  section h1.roomy, section h2.roomy, section h3.roomy, section h4.roomy, section h5.roomy {
+    margin: 20px 0 40px 0; }
 
 header {
   padding: 15px; }
@@ -29,12 +40,24 @@ header {
   text-align: left; }
 
 section.blurbs {
-  margin-top: 150px; }
+  margin-top: 250px;
+  min-height: 350px; }
   section.blurbs h1.ui.header {
     font-family: Montserrat, sans-serif;
     font-weight: 700; }
   section.blurbs h2.ui.header {
     font-weight: 100; }
+section.status-modules {
+  padding: 20px;
+  background-image: url(/images/subtle_patterns/gplaypattern/gplaypattern.png); }
+
+.counter {
+  display: block;
+  text-align: center;
+  color: #3498db; }
+  .counter.large {
+    font-size: 32px; }
+
 section.pattern-block {
   height: 250px; }
   section.pattern-block.batthern {
