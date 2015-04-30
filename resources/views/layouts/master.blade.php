@@ -2,9 +2,9 @@
 <html lang="en" ng-app="PrexApp">
   <head>
     <title>p.rex | {{ $title or 'home' }}</title>
-    <!-- <link rel="stylesheet" type="text/css" href="/assets/css/semantic.min.css"> -->
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.6/semantic.min.css">
     <link rel="stylesheet" type="text/css" href="/css/application.css">
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.12.0/semantic.min.css">
+    {{-- <link rel="stylesheet" type="text/css" href="/css/semantic.css"> --}}
     <script type="text/javascript">
       window.PREX_ENV = "{{ $app->environment() }}"
       window.PREX_ENDPOINTS = {!! json_encode($env_endpoints) !!}
@@ -23,7 +23,6 @@
     @include('partials.sidebar')
 
     <div class="pusher">
-      <h1>{{ $app->environment() }}</h1>
       @yield('content')
     </div>
   </body>

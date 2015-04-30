@@ -39,6 +39,10 @@ header {
 .ui.icon.menu > .item {
   text-align: left; }
 
+.ui.segment.twitter {
+  background: #6cb7f0;
+  border: 1px #55acee solid; }
+
 section.blurbs {
   margin-top: 250px;
   min-height: 350px; }
