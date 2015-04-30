@@ -92,7 +92,7 @@ angular
   .directive('cardDestiny', function() {
     return {
       restrict: 'E',
-      templateUrl: '/js/templates/card-destiny.html'
+      templateUrl: '/templates/card-destiny.html'
     }
   })
 angular
@@ -100,7 +100,7 @@ angular
   .directive('cardDigitalocean', function() {
     return {
       restrict: 'E',
-      templateUrl: '/js/templates/card-digitalocean.html'
+      templateUrl: '/templates/card-digitalocean.html'
     }
   })
 angular
@@ -108,7 +108,7 @@ angular
   .directive('cardGithubPush', function() {
     return {
       restrict: 'E',
-      templateUrl: '/js/templates/card-github-push.html'
+      templateUrl: '/templates/card-github-push.html'
     }
   })
 angular
@@ -116,7 +116,7 @@ angular
   .directive('cardGithubRepository', function() {
     return {
       restrict: 'E',
-      templateUrl: '/js/templates/card-github-repository.html'
+      templateUrl: '/templates/card-github-repository.html'
     }
   })
 angular
@@ -124,7 +124,7 @@ angular
   .directive('cardGithub', function() {
     return {
       restrict: 'E',
-      templateUrl: '/js/templates/card-github.html'
+      templateUrl: '/templates/card-github.html'
     }
   })
 angular
@@ -132,7 +132,7 @@ angular
   .directive('cardInstagram', function() {
     return {
       restrict: 'E',
-      templateUrl: '/js/templates/card-instagram.html'
+      templateUrl: '/templates/card-instagram.html'
     }
   })
 angular
@@ -140,7 +140,7 @@ angular
   .directive('cardItunes', function() {
     return {
       restrict: 'E',
-      templateUrl: '/js/templates/card-itunes.html'
+      templateUrl: '/templates/card-itunes.html'
     }
   })
 angular
@@ -148,7 +148,7 @@ angular
   .directive('cardLastfm', function() {
     return {
       restrict: 'E',
-      templateUrl: '/js/templates/card-lastfm.html'
+      templateUrl: '/templates/card-lastfm.html'
     }
   })
 angular
@@ -156,7 +156,7 @@ angular
   .directive('cardMixcloud', function() {
     return {
       restrict: 'E',
-      templateUrl: '/js/templates/card-mixcloud.html'
+      templateUrl: '/templates/card-mixcloud.html'
     }
   })
 angular
@@ -164,7 +164,7 @@ angular
   .directive('cardNpm', function() {
     return {
       restrict: 'E',
-      templateUrl: '/js/templates/card-npm.html'
+      templateUrl: '/templates/card-npm.html'
     }
   })
 angular
@@ -172,7 +172,7 @@ angular
   .directive('cardRubygems', function() {
     return {
       restrict: 'E',
-      templateUrl: '/js/templates/card-rubygems.html'
+      templateUrl: '/templates/card-rubygems.html'
     }
   })
 angular
@@ -180,7 +180,7 @@ angular
   .directive('cardSoundcloud', function() {
     return {
       restrict: 'E',
-      templateUrl: '/js/templates/card-soundcloud.html'
+      templateUrl: '/templates/card-soundcloud.html'
     }
   })
 angular
@@ -188,7 +188,7 @@ angular
   .directive('cardSpotify', function() {
     return {
       restrict: 'E',
-      templateUrl: '/js/templates/card-spotify.html'
+      templateUrl: '/templates/card-spotify.html'
     }
   })
 angular
@@ -196,7 +196,7 @@ angular
   .directive('cardStackoverflow', function() {
     return {
       restrict: 'E',
-      templateUrl: '/js/templates/card-stackoverflow.html'
+      templateUrl: '/templates/card-stackoverflow.html'
     }
   })
 angular
@@ -204,7 +204,14 @@ angular
   .directive('cardTwitter', function() {
     return {
       restrict: 'E',
-      templateUrl: '/js/templates/card-twitter.html'
+      templateUrl: '/templates/card-twitter.html'
+    }
+  })
+angular
+  .module('app.directives')
+  .filter('asDate', function() {
+    return function(date_string) {
+      return new Date(date_string)
     }
   })
 var app = angular

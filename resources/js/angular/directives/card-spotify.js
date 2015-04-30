@@ -3,6 +3,6 @@ angular
   .directive('cardSpotify', function() {
     return {
       restrict: 'E',
-      templateUrl: '/js/templates/card-spotify.html'
+      templateUrl: '/templates/card-spotify.html'
     }
   })

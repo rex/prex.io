@@ -3,6 +3,6 @@ angular
   .directive('cardRubygems', function() {
     return {
       restrict: 'E',
-      templateUrl: '/js/templates/card-rubygems.html'
+      templateUrl: '/templates/card-rubygems.html'
     }
   })

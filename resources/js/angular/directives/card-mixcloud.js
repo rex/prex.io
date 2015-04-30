@@ -3,6 +3,6 @@ angular
   .directive('cardMixcloud', function() {
     return {
       restrict: 'E',
-      templateUrl: '/js/templates/card-mixcloud.html'
+      templateUrl: '/templates/card-mixcloud.html'
     }
   })

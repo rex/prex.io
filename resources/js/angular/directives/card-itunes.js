@@ -3,6 +3,6 @@ angular
   .directive('cardItunes', function() {
     return {
       restrict: 'E',
-      templateUrl: '/js/templates/card-itunes.html'
+      templateUrl: '/templates/card-itunes.html'
     }
   })

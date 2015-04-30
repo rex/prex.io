@@ -3,6 +3,6 @@ angular
   .directive('cardLastfm', function() {
     return {
       restrict: 'E',
-      templateUrl: '/js/templates/card-lastfm.html'
+      templateUrl: '/templates/card-lastfm.html'
     }
   })

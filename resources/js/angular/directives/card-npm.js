@@ -3,6 +3,6 @@ angular
   .directive('cardNpm', function() {
     return {
       restrict: 'E',
-      templateUrl: '/js/templates/card-npm.html'
+      templateUrl: '/templates/card-npm.html'
     }
   })

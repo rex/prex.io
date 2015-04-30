@@ -3,6 +3,6 @@ angular
   .directive('cardGithubRepository', function() {
     return {
       restrict: 'E',
-      templateUrl: '/js/templates/card-github-repository.html'
+      templateUrl: '/templates/card-github-repository.html'
     }
   })

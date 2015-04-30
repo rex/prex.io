@@ -3,6 +3,6 @@ angular
   .directive('cardGithubPush', function() {
     return {
       restrict: 'E',
-      templateUrl: '/js/templates/card-github-push.html'
+      templateUrl: '/templates/card-github-push.html'
     }
   })
