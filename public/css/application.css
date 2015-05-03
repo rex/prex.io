@@ -6,6 +6,12 @@ body {
 .pusher {
   padding: 0 0 0 225px; }
 
+div, span, p, a, b {
+  font-family: 'Raleway', 'Helvetica Neue', 'Lato', sans-serif; }
+
+code, pre {
+  font-family: 'Source Code Pro', 'Inconsolata', 'Anonymous Pro', monospace; }
+
 a {
   color: #222; }
 

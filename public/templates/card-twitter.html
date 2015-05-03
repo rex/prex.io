@@ -1,10 +1,62 @@
 <h5 class="ui top attached header">
-  <i class="twitter icon"></i>
-  Twitter @kiapierce
+  <span ng-if="!twitter_user.screen_name">
+    <i class="twitter icon"></i>
+    Twitter
+  </span>
+
+  <a href="https://twitter.com/<< twitter_user.screen_name >>" ng-if="twitter_user.screen_name">
+    <img src="<< twitter_user.profile_image_url >>" class="ui avatar image">
+    @<< twitter_user.screen_name >>
+  </a>
 </h5>
+
+<div class="ui raised attached segment" ng-hide="twitterCardLoading" style="background-image: url(<< twitter_user.profile_background_image_url >>);">
+  <div class="ui four column grid">
+    <div class="center aligned column">
+      <div class="ui tiny inverted statistic">
+        <div class="value">
+          << twitter_user.followers_count >>
+        </div>
+        <div class="key">
+          FOLLOWERS
+        </div>
+      </div>
+    </div>
+
+    <div class="center aligned column">
+      <div class="ui tiny inverted statistic">
+        <div class="value">
+          << twitter_user.friends_count >>
+        </div>
+        <div class="key">
+          FOLLOWING
+        </div>
+      </div>
+    </div>
+
+    <div class="center aligned column">
+      <div class="ui tiny inverted statistic">
+        <div class="value">
+          << twitter_user.statuses_count >>
+        </div>
+        <div class="key">
+          TWEETS
+        </div>
+      </div>
+    </div>
+
+    <div class="center aligned column">
+      <div class="ui tiny inverted statistic">
+        <div class="value">
+          << twitter_user.favourites_count >>
+        </div>
+        <div class="key">
+          FAVORITES
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="ui raised attached loading segment" ng-show="twitterCardLoading">
   <br>
-</div>
-<div class="ui raised attached segment" ng-hide="twitterCardLoading">
-  <div class="counter large">32</div>
 </div>
