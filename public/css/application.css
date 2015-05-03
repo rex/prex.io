@@ -121,5 +121,16 @@ section.pattern-block {
     text-shadow: 0 1px 4px #999;
     padding-top: 100px; }
 
+.bg-twitter {
+  background-color: #55acee !important; }
+
+.twitter-status p.content {
+  color: #fff; }
+.twitter-status p.metadata span.time {
+  color: #ccc; }
+.twitter-status p.metadata span.location {
+  color: #ddd;
+  margin-left: 10px; }
+
 
 /*# sourceMappingURL=application.css.map */

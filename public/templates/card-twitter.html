@@ -57,6 +57,9 @@
     </div>
   </div>
 </div>
+<div class="ui raised attached bg-twitter segment" ng-if="twitter_user.status">
+  <twitter-tweet tweet="twitter_user.status"></twitter-tweet>
+</div>
 <div class="ui raised attached loading segment" ng-show="twitterCardLoading">
   <br>
 </div>
