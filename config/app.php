@@ -191,7 +191,7 @@ return [
 		'Password'  => 'Illuminate\Support\Facades\Password',
 		'Queue'     => 'Illuminate\Support\Facades\Queue',
 		'Redirect'  => 'Illuminate\Support\Facades\Redirect',
-		'Redis'     => 'Illuminate\Support\Facades\Redis',
+		'RedisL5'     => 'Illuminate\Support\Facades\Redis',
 		'Request'   => 'Illuminate\Support\Facades\Request',
 		'Response'  => 'Illuminate\Support\Facades\Response',
 		'Route'     => 'Illuminate\Support\Facades\Route',
@@ -202,6 +202,8 @@ return [
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
 
+		// Additional aliases
+		'Carbon'		=> 'Carbon\Carbon'
 	],
 
 ];

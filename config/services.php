@@ -39,5 +39,11 @@ return [
 		'client_id' => env('SOUNDCLOUD_CLIENT_ID'),
 		'client_secret' => env('SOUNDCLOUD_CLIENT_SECRET'),
 		'callback_url' => ''
+	],
+
+	'twitter' => [
+		'screen_name' => env('TWITTER_HANDLE'),
+		'cache_namespace' => 'services:twitter',
+		'cache_ttl' => 86400
 	]
 ];

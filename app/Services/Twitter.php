@@ -1,38 +1,71 @@
 <?php namespace App\Services;
 
 use Thujohn\Twitter\Facades\Twitter as TwitterFacade;
+use Config;
+use Log;
+use Carbon;
 
-class Twitter {
-  public static function latestTweet() {
-    $tweet = self::tweets(1);
-
-    if(count($tweet))
-      return $tweet[0];
-    else
-      return $tweet;
+class Twitter extends BaseService {
+  public function __construct() {
+    parent::__construct();
+    $this->cache_namespace = Config::get('services.twitter.cache_namespace');
+    $this->cache_ttl = Config::get('services.twitter.cache_ttl');
   }
 
-  public static function tweets($count = 20, $handle = null) {
-    if($handle == null || $handle == "self")
-      $handle = env('TWITTER_HANDLE');
+  public function latestTweet($handle) {
+    $handle = $this->getHandle($handle);
+    $cache_key = "tweets:$handle:latest";
 
-    return TwitterFacade::getUserTimeline([
+    if($this->isCached($cache_key))
+      return $this->cachedObject($cache_key);
+
+    $tweet = TwitterFacade::getUserTimeline([
+      'screen_name' => $handle,
+      'count' => 1
+    ]);
+
+    if(count($tweet))
+      $tweet = $tweet[0];
+
+    return $this->cacheObject($cache_key, $tweet, Carbon::now()->addDays(7));
+  }
+
+  public function tweets($count = 20, $handle) {
+    $handle = $this->getHandle($handle);
+    $cache_key = "tweets:$handle";
+
+    if($this->isCached($cache_key))
+      return $this->cachedObject($cache_key);
+
+    $tweets = TwitterFacade::getUserTimeline([
       'screen_name' => $handle,
       'count' => $count
     ]);
+
+    return $this->cacheObject($cache_key, $tweets, Carbon::now()->addHours(6));
   }
 
-  public static function tweet($tweet_id) {
-    return TwitterFacade::getTweet($tweet_id);
+  public function tweet($tweet_id) {
+    $cache_key = "tweets:$tweet_id";
+
+    if($this->isCached($cache_key))
+      return $this->cachedObject($cache_key);
+
+    $tweet = TwitterFacade::getTweet($tweet_id);
+
+    return $this->cacheObject($cache_key, $tweet, Carbon::now()->addDays(7));
   }
 
-  public static function users() {
+  public function users() {
     //
   }
 
-  public static function user($handle = null) {
-    if($handle == null || $handle == "self")
-      $handle = env('TWITTER_HANDLE');
+  public function user($handle) {
+    $handle = $this->getHandle($handle);
+    $cache_key = "users:$handle";
+
+    if($this->isCached($cache_key))
+      return $this->cachedObject($cache_key);
 
     $user = TwitterFacade::getUsers([
       'screen_name' => $handle
@@ -48,6 +81,13 @@ class Twitter {
       'screen_name' => $handle
     ]);
 
-    return $user;
+    return $this->cacheObject($cache_key, $user, Carbon::now()->addDays(7));
+  }
+
+  private function getHandle($handle) {
+    if($handle == null || $handle == "self")
+      return Config::get('services.twitter.screen_name');
+    else
+      return $handle;
   }
 }

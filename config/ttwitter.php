@@ -4,6 +4,7 @@
 
 return [
 	'debug'               => false,
+	'format'							=> 'array',
 
 	'API_URL'             => 'api.twitter.com',
 	'UPLOAD_URL'          => 'upload.twitter.com',
@@ -14,8 +15,8 @@ return [
 	'REQUEST_TOKEN_URL'   => 'https://api.twitter.com/oauth/request_token',
 	'USE_SSL'             => true,
 
-	'CONSUMER_KEY'        => 'yOXLs8nuPj7414Rrw3zlDvkig',
-	'CONSUMER_SECRET'     => 'oyU48IDSw3Gzvcyc8UeBPw79YuRWXt6ZcmIyXWghlgc0thVRRd',
-	'ACCESS_TOKEN'        => '63488595-GRlHweG6pQ5LnV7vTjj3DdurAmZ6voHseKn7VsNDz',
-	'ACCESS_TOKEN_SECRET' => 'hC9uEUmb1MfyzSQCBRiDwfyG8KfmzQEzg2UmJ7xA1bWm9',
+	'CONSUMER_KEY'        => env('TWITTER_CONSUMER_KEY'),
+	'CONSUMER_SECRET'     => env('TWITTER_CONSUMER_SECRET'),
+	'ACCESS_TOKEN'        => env('TWITTER_ACCESS_TOKEN'),
+	'ACCESS_TOKEN_SECRET' => env('TWITTER_ACCESS_TOKEN_SECRET')
 ];

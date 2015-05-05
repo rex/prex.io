@@ -2,6 +2,9 @@
 
 return [
 
+	'default_ttl' => 604800,
+	'default_type' => 'hash',
+
 	/*
 	|--------------------------------------------------------------------------
 	| Default Cache Store
@@ -58,7 +61,7 @@ return [
 
 		'redis' => [
 			'driver' => 'redis',
-			'connection' => 'default',
+			'connection' => ['host' => '127.0.0.1', 'port' => 6379]
 		],
 
 	],

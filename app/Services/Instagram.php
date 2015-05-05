@@ -24,6 +24,15 @@ class Instagram {
     return self::fetchJson("users/$user_id/media/recent", "data");
   }
 
+  public static function latestPost($user_id) {
+    $posts = self::posts($user_id);
+
+    if(count($posts))
+      return $posts[0];
+    else
+      return [];
+  }
+
   public static function post($post_id) {
     return self::fetchJson("media/$post_id", "data");
   }

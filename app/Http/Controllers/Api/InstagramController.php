@@ -24,4 +24,8 @@ class InstagramController extends ApiController {
   public function post($post_id) {
     return $this->respond( Instagram::post($post_id) );
   }
+
+  public function latestPost($user_id) {
+    return $this->respond( Instagram::latestPost($user_id) );
+  }
 }

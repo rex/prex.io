@@ -71,6 +71,7 @@ $api_routes = function() {
   });
 
   Route::group(['prefix' => 'instagram'], function() {
+    Route::get('/users/{user_id}/posts/latest', 'Api\InstagramController@latestPost');
     Route::get('/users/{user_id}/posts', 'Api\InstagramController@posts');
     Route::get('/users/{user_id}', 'Api\InstagramController@user');
     Route::get('/users', 'Api\InstagramController@users');
