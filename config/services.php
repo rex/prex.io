@@ -50,5 +50,11 @@ return [
 	'digitalocean' => [
 		'cache_namespace' => 'services:digitalocean',
 		'cache_ttl' => 3600
+	],
+
+	'instagram' => [
+		'cache_namespace' => 'services:instagram',
+		'cache_ttl' => 86400,
+		'user_id' => env('INSTAGRAM_USER_ID')
 	]
 ];

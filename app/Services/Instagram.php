@@ -2,39 +2,63 @@
 
 use GuzzleHttp\Client as Http;
 use App\Services\Traits\JsonService;
+use Config;
+use Carbon;
 
-class Instagram {
-  use JsonService;
+class Instagram extends BaseService {
+  public function __construct() {
+    parent::__construct();
+    $this->cache_namespace = Config::get('services.instagram.cache_namespace');
+    $this->cache_ttl = Config::get('services.instagram.cache_ttl');
+    $this->http_client_options = [
+      'base_url' => 'https://api.instagram.com/v1/',
+      'defaults' => [
+        'query' => [
+          'access_token' => env('INSTAGRAM_ACCESS_TOKEN')
+        ]
+      ]
+    ];
+  }
 
-  public static function users() {
+  public function users() {
     //
   }
 
-  public static function user($user_id) {
-    if($user_id == "self")
-      $user_id = env('INSTAGRAM_USER_ID');
+  public function user($user_id) {
+    $user_id = $this->getUserId($user_id);
 
-    return self::fetchJson("users/$user_id", "data");
+    return $this->fetchAndCache("users/$user_id", [
+      "response_key" => "data"
+    ]);
   }
 
-  public static function posts($user_id) {
-    if($user_id == "self")
-      $user_id = env('INSTAGRAM_USER_ID');
+  public function posts($user_id) {
+    $user_id = $this->getUserId($user_id);
 
-    return self::fetchJson("users/$user_id/media/recent", "data");
+    return $this->fetchAndCache("users/$user_id/media/recent", [
+      "response_key" => "data"
+    ]);
   }
 
-  public static function latestPost($user_id) {
-    $posts = self::posts($user_id);
+  public function latestPost($user_id) {
+    $user_id = $this->getUserId($user_id);
 
-    if(count($posts))
-      return $posts[0];
-    else
-      return [];
+    return $this->fetchAndCache("users/$user_id/media/recent", [
+      "response_key" => "data",
+      "single_item_array" => true,
+      "http_options" => [
+        "query" => [
+          "count" => 1
+        ]
+      ],
+      "cache_key" => "users:$user_id:media:latest"
+    ]);
   }
 
-  public static function post($post_id) {
-    return self::fetchJson("media/$post_id", "data");
+  public function post($post_id) {
+    return $this->fetchAndCache("media/$post_id", [
+      "response_key" => "data"
+    ]);
   }
 
   private static function client() {
@@ -46,5 +70,12 @@ class Instagram {
         ]
       ]
     ]);
+  }
+
+  private function getUserId($user_id) {
+    if($user_id == null || $user_id == "self")
+      return Config::get('services.instagram.user_id');
+    else
+      return $user_id;
   }
 }
