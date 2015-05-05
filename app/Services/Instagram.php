@@ -61,17 +61,6 @@ class Instagram extends BaseService {
     ]);
   }
 
-  private static function client() {
-    return new Http([
-      'base_url' => 'https://api.instagram.com/v1/',
-      'defaults' => [
-        'query' => [
-          'access_token' => env('INSTAGRAM_ACCESS_TOKEN')
-        ]
-      ]
-    ]);
-  }
-
   private function getUserId($user_id) {
     if($user_id == null || $user_id == "self")
       return Config::get('services.instagram.user_id');

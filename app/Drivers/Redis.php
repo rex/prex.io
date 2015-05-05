@@ -19,4 +19,12 @@ class Redis {
   public function storeObject($cache_key, $object) {
     return $this->client->set($cache_key, json_encode($object));
   }
+
+  public function bust($cache_key) {
+    return $this->client->del($cache_key);
+  }
+
+  public function delete($cache_key) {
+    return $this->bust($cache_key);
+  }
 }

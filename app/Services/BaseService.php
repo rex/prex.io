@@ -1,6 +1,9 @@
 <?php namespace App\Services;
 
 use GuzzleHttp\Client as Http;
+use GuzzleHttp\Event\BeforeEvent;
+use GuzzleHttp\Event\CompleteEvent;
+use GuzzleHttp\Message\Response;
 use App\Drivers\Redis;
 use Config;
 use Log;
@@ -15,7 +18,13 @@ class BaseService {
   }
 
   protected function http() {
-    return new Http($this->http_client_options);
+    $http = new Http($this->http_client_options);
+
+    // If the application is in HTTP_DEBUG mode, load event listeners
+    if(env('HTTP_DEBUG'))
+      $this->loadHttpEventListeners($http);
+
+    return $http;
   }
 
   protected function isCached($cache_key) {
@@ -49,25 +58,45 @@ class BaseService {
     $cache_key = $this->getParamValue($params, "cache_key", $this->endpointToCacheKey($endpoint));
     $single_item_array = $this->getParamValue($params, "single_item_array", false);
 
-    if($this->isCached($cache_key))
-      return $this->cachedObject($cache_key);
+    // dd($endpoint, $response_key, $http_options, $cache_ttl, $cache_key, $single_item_array);
+
+    // If the application has HTTP_CACHE disabled, bypass cache lookup.
+    // Otherwise, check the cache for the endpoint
+    if(env('HTTP_CACHE')) {
+      if($this->isCached($cache_key)) {
+        // If the application has HTTP_CACHE_BUST enabled, bust the cache instead
+        if(env('HTTP_CACHE_BUST')) {
+          Log::debug("CACHE BUST: $cache_key");
+          $this->cache->bust($cache_key);
+        } else {
+          Log::debug("CACHE HIT: $cache_key");
+          return $this->cachedObject($cache_key);
+        }
+      } else {
+        Log::debug("CACHE MISS: $cache_key");
+      }
+    }
 
     $external_response = $this->http()->get($endpoint, $http_options);
 
     if($response_key != null)
       $response = $external_response->json()[$response_key];
     else
-      $response = $external_response;
+      $response = $external_response->json();
 
     if(is_array($response))
       $result = array_map($transform_result, $response);
     else
-      $result = transform_result($response);
+      $result = $transform_result($response);
 
     if(is_array($result) && count($result) == 1 && $single_item_array)
       $result = $result[0];
 
-    return $this->cacheObject($cache_key, $result, $cache_ttl);
+    // If HTTP_CACHE is disabled, bypass response caching
+    if(env('HTTP_CACHE'))
+      return $this->cacheObject($cache_key, $result, $cache_ttl);
+    else
+      return $result;
   }
 
   protected function endpointToCacheKey($endpoint) {
@@ -83,5 +112,16 @@ class BaseService {
       return $params[$key];
     else
       return $default;
+  }
+
+  private function loadHttpEventListeners(\GuzzleHttp\Client $http_client) {
+    $emitter = $http_client->getEmitter();
+
+    $emitter->on('before', function(BeforeEvent $event) {
+      Log::debug($event->getRequest());
+    });
+    $emitter->on('complete', function(CompleteEvent $event) {
+      Log::debug($event->getResponse()->json());
+    });
   }
 }

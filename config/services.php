@@ -56,5 +56,11 @@ return [
 		'cache_namespace' => 'services:instagram',
 		'cache_ttl' => 86400,
 		'user_id' => env('INSTAGRAM_USER_ID')
+	],
+
+	'mixcloud' => [
+		'cache_namespace' => 'services:mixcloud',
+		'cache_ttl' => 86400,
+		'handle' => env('MIXCLOUD_HANDLE')
 	]
 ];
