@@ -45,5 +45,10 @@ return [
 		'screen_name' => env('TWITTER_HANDLE'),
 		'cache_namespace' => 'services:twitter',
 		'cache_ttl' => 86400
+	],
+
+	'digitalocean' => [
+		'cache_namespace' => 'services:digitalocean',
+		'cache_ttl' => 3600
 	]
 ];
