@@ -38,7 +38,10 @@ return [
 	'soundcloud' => [
 		'client_id' => env('SOUNDCLOUD_CLIENT_ID'),
 		'client_secret' => env('SOUNDCLOUD_CLIENT_SECRET'),
-		'callback_url' => ''
+		'user_id' => env('SOUNDCLOUD_USER_ID'),
+		'callback_url' => '',
+		'cache_namespace' => 'services:soundcloud',
+		'cache_ttl' => 86400
 	],
 
 	'twitter' => [
@@ -62,5 +65,9 @@ return [
 		'cache_namespace' => 'services:mixcloud',
 		'cache_ttl' => 86400,
 		'handle' => env('MIXCLOUD_HANDLE')
+	],
+
+	'npm' => [
+		'username' => env('NPM_USERNAME')
 	]
 ];

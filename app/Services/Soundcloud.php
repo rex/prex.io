@@ -5,42 +5,68 @@ use App\Services\Traits\JsonService;
 use App\Models\Soundcloud\User;
 use App\Models\Soundcloud\Track;
 use App\Models\Soundcloud\Playlist;
+use Config;
+use Log;
 
-class Soundcloud {
-  use JsonService;
-
-  public static function users() {
-    //
-  }
-
-  public static function user($user_id) {
-    return self::fetchJson("/users/$user_id.json");
-  }
-
-  public static function tracks($user_id) {
-    return self::fetchJson("/users/$user_id/tracks.json");
-  }
-
-  public static function track($track_id) {
-    return self::fetchJson("/tracks/$track_id.json");
-  }
-
-  public static function playlists($user_id) {
-    return self::fetchJson("/users/$user_id/playlists.json");
-  }
-
-  public static function playlist($playlist_id) {
-    return self::fetchJson("/playlists/$playlist_id.json");
-  }
-
-  private static function client() {
-    return new Http([
+class Soundcloud extends BaseService {
+  public function __construct() {
+    parent::__construct();
+    $this->cache_namespace = Config::get('services.soundcloud.cache_namespace');
+    $this->cache_ttl = Config::get('services.soundcloud.cache_ttl');
+    $this->http_client_options = [
       'base_url' => 'https://api.soundcloud.com/',
       'defaults' => [
         'query' => [
-          'client_id' => env('SOUNDCLOUD_CLIENT_ID')
+          'client_id' => Config::get('services.soundcloud.client_id')
         ]
       ]
+    ];
+  }
+
+  public function users() {
+    //
+  }
+
+  public function user($user_id) {
+    $user_id = $this->getUserId($user_id);
+
+    return $this->fetchAndCache("/users/$user_id.json", [
+      "cache_key" => "/users/$user_id"
     ]);
+  }
+
+  public function tracks($user_id) {
+    $user_id = $this->getUserId($user_id);
+
+    return $this->fetchAndCache("/users/$user_id/tracks.json", [
+      "cache_key" => "/users/$user_id/tracks"
+    ]);
+  }
+
+  public function track($track_id) {
+    return $this->fetchAndCache("/tracks/$track_id.json", [
+      "cache_key" => "/tracks/$track_id"
+    ]);
+  }
+
+  public function playlists($user_id) {
+    $user_id = $this->getUserId($user_id);
+
+    return $this->fetchAndCache("/users/$user_id/playlists.json", [
+      "cache_key" => "/users/$user_id/playlists"
+    ]);
+  }
+
+  public function playlist($playlist_id) {
+    return $this->fetchAndCache("/playlists/$playlist_id.json", [
+      "cache_key" => "/playlists/$playlist_id"
+    ]);
+  }
+
+  private function getUserId($user_id) {
+    if($user_id == null || $user_id == "self")
+      return Config::get('services.soundcloud.user_id');
+    else
+      return $user_id;
   }
 }

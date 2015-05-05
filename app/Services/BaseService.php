@@ -99,6 +99,10 @@ class BaseService {
       return $result;
   }
 
+  protected function fetchJsonEndpoint($endpoint) {
+    return $this->http()->get($endpoint)->json();
+  }
+
   protected function endpointToCacheKey($endpoint) {
     return str_replace("/", ":", $endpoint);
   }
