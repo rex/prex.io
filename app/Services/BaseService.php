@@ -7,6 +7,7 @@ use GuzzleHttp\Message\Response;
 use App\Drivers\Redis;
 use Config;
 use Log;
+use Exception;
 
 class BaseService {
   protected $response;
@@ -28,21 +29,11 @@ class BaseService {
   }
 
   protected function isCached($cache_key) {
-    if ($this->cache->exists($this->cacheKey($cache_key))) {
-      return true;
-    } else {
-      return false;
-    }
+    return ($this->cache->exists($this->cacheKey($cache_key)));
   }
 
   protected function cachedObject($cache_key) {
-    $cached_object = $this->cache->getObject($this->cacheKey($cache_key));
-    if($cached_object) {
-      $this->cached_objects[$cache_key] = $cached_object;
-      return $cached_object;
-    } else {
-      return false;
-    }
+    return $this->cache->getObject($this->cacheKey($cache_key));
   }
 
   protected function cacheObject($cache_key, $object, $ttl = $this->cache_ttl) {

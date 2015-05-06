@@ -78,5 +78,11 @@ return [
 			'stackoverflow' => 439499,
 			'security' => 12341
 		]
+	],
+
+	'github' => [
+		'cache_namespace' => 'services:github',
+		'cache_ttl' => 43200,
+		'handle' => 'rex'
 	]
 ];

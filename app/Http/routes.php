@@ -126,22 +126,26 @@ $api_routes = function() {
   });
 
   Route::group(['prefix' => 'github'], function() {
-    Route::get('/users/{user_id}', 'Api\GithubController@user');
+    Route::get('/users/{username}/repos', 'Api\GithubController@repos');
+    Route::get('/users/{username}/gists', 'Api\GithubController@gists');
+    Route::get('/users/{username}/organizations', 'Api\GithubController@organizations');
+    Route::get('/users/{username}', 'Api\GithubController@user');
     Route::get('/users', 'Api\GithubController@users');
-    Route::get('/repos/{repo_id}', 'Api\GithubController@repo');
-    Route::get('/repos', 'Api\GithubController@repos');
-    Route::get('/pushes/{push_id}', 'Api\GithubController@push');
-    Route::get('/pushes', 'Api\GithubController@pushes');
-    Route::get('/commits/{commit_id}', 'Api\GithubController@commit');
-    Route::get('/commits', 'Api\GithubController@commits');
+    Route::get('/repos/{repo_name}/languages', 'Api\GithubController@repoLanguages');
+    Route::get('/repos/{repo_name}', 'Api\GithubController@repo');
+    Route::get('/gists/{gist_id}/comments', 'Api\GithubController@gistComments');
     Route::get('/gists/{gist_id}', 'Api\GithubController@gist');
-    Route::get('/gists', 'Api\GithubController@gists');
-    Route::get('/issues/{issue_id}', 'Api\GithubController@issue');
-    Route::get('/issues', 'Api\GithubController@issues');
-    Route::get('/organizations/{organization_id}', 'Api\GithubController@organization');
-    Route::get('/organizations', 'Api\GithubController@organizations');
-    Route::get('/events/{event_id}', 'Api\GithubController@event');
-    Route::get('/events', 'Api\GithubController@events');
+    Route::get('/organizations/{organization_name}/repos', 'Api\GithubController@organizationRepos');
+    Route::get('/organizations/{organization_name}/members', 'Api\GithubController@organizationMembers');
+    Route::get('/organizations/{organization_name}', 'Api\GithubController@organization');
+    // Route::get('/pushes/{push_id}', 'Api\GithubController@push');
+    // Route::get('/pushes', 'Api\GithubController@pushes');
+    // Route::get('/commits/{commit_id}', 'Api\GithubController@commit');
+    // Route::get('/commits', 'Api\GithubController@commits');
+    // Route::get('/issues/{issue_id}', 'Api\GithubController@issue');
+    // Route::get('/issues', 'Api\GithubController@issues');
+    // Route::get('/events/{event_id}', 'Api\GithubController@event');
+    // Route::get('/events', 'Api\GithubController@events');
     Route::get('/', 'Api\GithubController@index');
   });
 

@@ -23,7 +23,7 @@ angular
     $scope.npmCardLoading = true
     $scope.rubygemsCardLoading = true
     $scope.spotifyCardLoading = true
-    $scope.stackoverflowCardLoading = true
+    $scope.stackexchangeCardLoading = true
 
     Restangular.one('twitter/users/', 'self').get().then(function(twitter_user) {
       console.log("Twitter User Fetched", twitter_user.plain())
@@ -85,6 +85,12 @@ angular
         $scope.instagram_posts = posts.plain()
         $scope.instagramCardLoading = false
       })
+    })
+
+    Restangular.all('stackexchange/accounts').getList().then(function(accounts) {
+      console.log("Stackexchange Accounts Fetched", accounts.plain())
+      $scope.stackexchange_accounts = accounts.plain()
+      $scope.stackexchangeCardLoading = false
     })
   }])
 angular
