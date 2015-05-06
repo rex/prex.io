@@ -17,7 +17,7 @@ class Stackexchange extends BaseService {
     $accounts = [];
 
     foreach($account_map as $site_name => $user_id) {
-      $accounts[$site_name] = $this->siteAccount($user_id, $site_name);
+      array_push($accounts, $this->siteAccount($user_id, $site_name));
     }
 
     return $accounts;
@@ -27,6 +27,8 @@ class Stackexchange extends BaseService {
     $cache_key = "sites:$site_name:users:$user_id:full";
 
     $site_info = [
+      'site' => $site_name,
+      'user_id' => $user_id,
       'user' => $this->user($user_id, $site_name),
       'badges' => $this->badges($user_id, $site_name),
       'questions' => $this->questions($user_id, $site_name),
