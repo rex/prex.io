@@ -69,5 +69,14 @@ return [
 
 	'npm' => [
 		'username' => env('NPM_USERNAME')
+	],
+
+	'stackexchange' => [
+		'cache_namespace' => 'services:stackexchange',
+		'cache_ttl' => 86400,
+		'user_ids' => [
+			'stackoverflow' => 439499,
+			'security' => 12341
+		]
 	]
 ];

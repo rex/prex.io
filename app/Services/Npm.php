@@ -1,7 +1,5 @@
 <?php namespace App\Services;
 
-use GuzzleHttp\Client as Http;
-use App\Services\Traits\JsonService;
 use Config;
 
 class Npm extends BaseService {

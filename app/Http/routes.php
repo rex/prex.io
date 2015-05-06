@@ -145,6 +145,15 @@ $api_routes = function() {
     Route::get('/', 'Api\GithubController@index');
   });
 
+  Route::group(['prefix' => 'stackexchange'], function() {
+    Route::get('/accounts', 'Api\StackexchangeController@accounts');
+    Route::get('/', function() {
+      return response()->json([
+        'foo' => 'bar'
+      ]);
+    });
+  });
+
   Route::get('/routes', function() { return dd( Route::getRoutes() ); });
 
   Route::any('{catchall}', function($page) {
