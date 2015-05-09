@@ -13,6 +13,10 @@ class NpmController extends ApiController {
     return $this->endpointRoot();
   }
 
+  public function card() {
+    return $this->respond( $this->npm->card() );
+  }
+
   public function modules() {
     return $this->respond( $this->npm->modules() );
   }

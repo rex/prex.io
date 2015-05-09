@@ -13,12 +13,20 @@ class GithubController extends ApiController {
     return $this->endpointRoot();
   }
 
+  public function card() {
+    return $this->respond( $this->github->card() );
+  }
+
   public function users() {
     //
   }
 
   public function user($username) {
     return $this->respond( $this->github->user($username) );
+  }
+
+  public function events($username, $total) {
+    return $this->respond( $this->github->events($username, $total) );
   }
 
   public function repos($username) {

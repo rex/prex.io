@@ -8,4 +8,8 @@ class LinkedinController extends ApiController {
   public function index() {
     return $this->endpointRoot();
   }
+
+  public function card() {
+    return $this->respond( $this->linkedin->card() );
+  }
 }

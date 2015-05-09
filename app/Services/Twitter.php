@@ -12,6 +12,15 @@ class Twitter extends BaseService {
     $this->cache_ttl = Config::get('services.twitter.cache_ttl');
   }
 
+  public function card() {
+    $me = $this->getHandle();
+
+    return [
+      'user' => $this->user($me),
+      'lists' => $this->lists($me)
+    ];
+  }
+
   public function latestTweet($handle) {
     $handle = $this->getHandle($handle);
     $cache_key = "tweets:$handle:latest";
@@ -84,7 +93,28 @@ class Twitter extends BaseService {
     return $this->cacheObject($cache_key, $user, Carbon::now()->addDays(7));
   }
 
-  private function getHandle($handle) {
+  public function lists($handle) {
+    $handle = $this->getHandle($handle);
+    $cache_key = "users:$handle:lists";
+
+    if($this->isCached($cache_key))
+      return $this->cachedObject($cache_key);
+
+    $lists = TwitterFacade::getLists([
+      'screen_name' => $handle
+    ]);
+
+    $lists = array_reduce($lists, function($carry, $list) {
+      if($list->mode == "public")
+        array_push($carry, $list);
+
+      return $carry;
+    }, []);
+
+    return $this->cacheObject($cache_key, $lists);
+  }
+
+  private function getHandle($handle = null) {
     if($handle == null || $handle == "self")
       return Config::get('services.twitter.screen_name');
     else

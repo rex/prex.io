@@ -13,6 +13,10 @@ class InstagramController extends ApiController {
     return $this->endpointRoot();
   }
 
+  public function card() {
+    return $this->respond( $this->instagram->card() );
+  }
+
   public function users() {
     //
   }

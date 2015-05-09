@@ -13,6 +13,10 @@ class MixcloudController extends ApiController {
     return $this->endpointRoot();
   }
 
+  public function card() {
+    return $this->respond( $this->mixcloud->card() );
+  }
+
   public function users() {
     //
   }

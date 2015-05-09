@@ -20,6 +20,16 @@ class Instagram extends BaseService {
     ];
   }
 
+  public function card() {
+    $me = $this->getUserId();
+
+    return [
+      'user' => $this->user($me),
+      'status' => $this->latestPost($me),
+      'post_count' => count($this->posts($me))
+    ];
+  }
+
   public function users() {
     //
   }
@@ -61,7 +71,7 @@ class Instagram extends BaseService {
     ]);
   }
 
-  private function getUserId($user_id) {
+  private function getUserId($user_id = null) {
     if($user_id == null || $user_id == "self")
       return Config::get('services.instagram.user_id');
     else

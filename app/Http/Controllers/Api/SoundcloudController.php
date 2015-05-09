@@ -13,6 +13,10 @@ class SoundcloudController extends ApiController {
     return $this->endpointRoot();
   }
 
+  public function card() {
+    return $this->respond( $this->soundcloud->card() );
+  }
+
   public function user($user_id) {
     return $this->respond( $this->soundcloud->user($user_id) );
   }

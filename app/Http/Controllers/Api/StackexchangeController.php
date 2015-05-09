@@ -13,6 +13,10 @@ class StackexchangeController extends ApiController {
     return $this->endpointRoot();
   }
 
+  public function card() {
+    return $this->respond( $this->stackexchange->card() );
+  }
+
   public function accounts() {
     return $this->respond( $this->stackexchange->allAccounts() );
   }

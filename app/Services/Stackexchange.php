@@ -12,6 +12,12 @@ class Stackexchange extends BaseService {
     ];
   }
 
+  public function card() {
+    return [
+      'accounts' => $this->allAccounts()
+    ];
+  }
+
   public function allAccounts() {
     $account_map = Config::get('services.stackexchange.user_ids');
     $accounts = [];

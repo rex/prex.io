@@ -19,6 +19,12 @@ class RubyGems extends BaseService {
     ];
   }
 
+  public function card() {
+    return [
+      'gems' => $this->gems()
+    ];
+  }
+
   public function gems() {
     return self::fetchAndCache("gems.json", [
       'cache_key' => 'gems'

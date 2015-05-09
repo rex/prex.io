@@ -12,6 +12,12 @@ class Digitalocean extends BaseService {
     $this->cache_ttl = Config::get('services.digitalocean.cache_ttl');
   }
 
+  public function card() {
+    return [
+      'droplets' => $this->droplets()
+    ];
+  }
+
   public function droplets() {
     $cache_key = "droplets";
 

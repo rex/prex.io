@@ -12,6 +12,12 @@ class Npm extends BaseService {
     ];
   }
 
+  public function card() {
+    return [
+      'modules' => $this->modules()
+    ];
+  }
+
   public function modules() {
     $username = Config::get('services.npm.username');
 

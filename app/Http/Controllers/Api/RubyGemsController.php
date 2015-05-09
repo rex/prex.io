@@ -13,6 +13,10 @@ class RubyGemsController extends ApiController {
     return $this->endpointRoot();
   }
 
+  public function card() {
+    return $this->respond( $this->rubygems->card() );
+  }
+
   public function gems() {
     return $this->respond( $this->rubygems->gems() );
   }

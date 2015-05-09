@@ -13,6 +13,10 @@ class TwitterController extends ApiController {
     return $this->endpointRoot();
   }
 
+  public function card() {
+    return $this->respond( $this->twitter->card() );
+  }
+
   public function tweets() {
     return $this->respond( $this->twitter->tweets() );
   }
@@ -25,7 +29,11 @@ class TwitterController extends ApiController {
     return $this->respond( $this->twitter->latestTweet() );
   }
 
-  public function user($handle = null) {
+  public function user($handle) {
     return $this->respond( $this->twitter->user($handle) );
+  }
+
+  public function lists($handle) {
+    return $this->respond( $this->twitter->lists($handle) );
   }
 }

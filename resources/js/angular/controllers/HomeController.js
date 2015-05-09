@@ -15,71 +15,51 @@ angular
     $scope.spotifyCardLoading = true
     $scope.stackexchangeCardLoading = true
 
-    Restangular.one('twitter/users/', 'self').get().then(function(twitter_user) {
-      console.log("Twitter User Fetched", twitter_user.plain())
-      $scope.twitter_user = twitter_user.plain()
+    Restangular.one('twitter/card').get().then(function(card) {
+      console.log("Twitter Card Fetched", card.plain())
+      $scope.twitter_card = card.plain()
       $scope.twitterCardLoading = false
     })
 
-    Restangular.all('digitalocean/droplets').getList().then(function(droplets) {
-      console.log("Digitalocean Droplets Fetched", droplets.plain())
-      $scope.digitalocean_droplets = droplets.plain()
+    Restangular.one('digitalocean/card').get().then(function(card) {
+      console.log("Digitalocean Card Fetched", card.plain())
+      $scope.digitalocean_card = card.plain()
       $scope.digitaloceanCardLoading = false
     })
 
-    Restangular.all('npm/modules').getList().then(function(modules) {
-      console.log('NPM Modules Fetched', modules.plain())
-      $scope.npm_modules = modules.plain()
+    Restangular.one('npm/card').get().then(function(card) {
+      console.log('NPM Card Fetched', card.plain())
+      $scope.npm_card = card.plain()
       $scope.npmCardLoading = false
     })
 
-    Restangular.one('mixcloud/users/self').get().then(function(user) {
-      console.log("Mixcloud User Fetched", user.plain())
-      $scope.mixcloud_user = user.plain()
-
-      Restangular.all('mixcloud/users/self/cloudcasts').getList().then(function(cloudcasts) {
-        console.log("Mixcloud Cloudcasts Fetched", cloudcasts.plain())
-        $scope.mixcloud_cloudcasts = cloudcasts.plain()
-        $scope.mixcloudCardLoading = false
-      })
+    Restangular.one('mixcloud/card').get().then(function(card) {
+      console.log("Mixcloud Card Fetched", card.plain())
+      $scope.mixcloud_card = card.plain()
+      $scope.mixcloudCardLoading = false
     })
 
-    Restangular.all('rubygems/gems').getList().then(function(gems) {
-      console.log("RubyGems Fetched", gems.plain())
-      $scope.rubygems = gems.plain()
+    Restangular.one('rubygems/card').get().then(function(card) {
+      console.log("RubyGems Card Fetched", card.plain())
+      $scope.rubygems_card = card.plain()
       $scope.rubygemsCardLoading = false
     })
 
-    Restangular.one('soundcloud/users/self').get().then(function(user) {
-      console.log("Soundcloud User Fetched", user.plain())
-      $scope.soundcloud_user = user.plain()
-
-      Restangular.all('soundcloud/users/self/tracks').getList().then(function(tracks) {
-        console.log("Soundcloud Tracks Fetched", tracks.plain())
-        $scope.soundcloud_tracks = tracks.plain()
-
-        Restangular.all('soundcloud/users/self/playlists').getList().then(function(playlists) {
-          console.log("Soundcloud Playlists Fetched", playlists.plain())
-          $scope.soundcloud_playlists = playlists.plain()
-          $scope.soundcloudCardLoading = false
-        })
-      })
+    Restangular.one('soundcloud/card').get().then(function(card) {
+      console.log("Soundcloud User Fetched", card.plain())
+      $scope.soundcloud_card = card.plain()
+      $scope.soundcloudCardLoading = false
     })
 
-    Restangular.one('instagram/users/self').get().then(function(user) {
-      console.log("Instagram User Fetched", user.plain())
-      $scope.instagram_user = user.plain()
-
-      Restangular.all('instagram/users/self/posts').getList().then(function(posts) {
-        console.log("Instagram Posts Fetched", posts.plain())
-        $scope.instagram_posts = posts.plain()
-        $scope.instagramCardLoading = false
-      })
+    Restangular.one('instagram/card').get().then(function(user) {
+      console.log("Instagram Card Fetched", user.plain())
+      $scope.instagram_card = user.plain()
+      $scope.instagramCardLoading = false
     })
 
-    Restangular.all('stackexchange/accounts').getList().then(function(accounts) {
-      console.log("Stackexchange Accounts Fetched", accounts.plain())
-      $scope.stackexchange_accounts = accounts.plain()
+    Restangular.one('stackexchange/card').get().then(function(accounts) {
+      console.log("Stackexchange Card Fetched", accounts.plain())
+      $scope.stackexchange_card = accounts.plain()
       $scope.stackexchangeCardLoading = false
     })
   }])

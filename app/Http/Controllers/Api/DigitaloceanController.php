@@ -13,6 +13,10 @@ class DigitaloceanController extends ApiController {
     return $this->endpointRoot();
   }
 
+  public function card() {
+    return $this->respond( $this->digitalocean->card() );
+  }
+
   public function droplets() {
     return $this->respond( $this->digitalocean->droplets() );
   }

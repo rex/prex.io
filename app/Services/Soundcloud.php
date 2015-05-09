@@ -23,6 +23,16 @@ class Soundcloud extends BaseService {
     ];
   }
 
+  public function card() {
+    $me = $this->getUserId();
+
+    return [
+      'user' => $this->user($me),
+      'tracks' => $this->tracks($me),
+      'playlists' => $this->playlists($me)
+    ];
+  }
+
   public function users() {
     //
   }
@@ -63,7 +73,7 @@ class Soundcloud extends BaseService {
     ]);
   }
 
-  private function getUserId($user_id) {
+  private function getUserId($user_id = null) {
     if($user_id == null || $user_id == "self")
       return Config::get('services.soundcloud.user_id');
     else

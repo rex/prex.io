@@ -16,6 +16,15 @@ class Mixcloud extends BaseService {
     ];
   }
 
+  public function card() {
+    $me = $this->getUsername();
+
+    return [
+      'user' => $this->user($me),
+      'cloudcasts' => $this->cloudcasts($me)
+    ];
+  }
+
   public function users() {
     //
   }
@@ -42,7 +51,7 @@ class Mixcloud extends BaseService {
     ]);
   }
 
-  private function getUsername($username) {
+  private function getUsername($username = null) {
     if($username == null || $username == "self")
       return Config::get('services.mixcloud.handle');
     else

@@ -1,9 +1,11 @@
 <?php namespace App\Services;
 
-use App\Services\Traits\JsonService;
+class Lastfm extends BaseService {
+  public function __construct() {
+    //
+  }
 
-class Lastfm {
-  use JsonService;
-
-  //
+  public function card() {
+    return [];
+  }
 }

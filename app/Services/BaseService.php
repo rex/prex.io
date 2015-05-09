@@ -18,6 +18,10 @@ class BaseService {
     $this->cache = new Redis();
   }
 
+  public function card() {
+    return [];
+  }
+
   protected function http() {
     $http = new Http($this->http_client_options);
 
@@ -28,7 +32,26 @@ class BaseService {
     return $http;
   }
 
+  protected function isCacheEnabled() {
+    if(env('HTTP_CACHE') == false || Config::get('request.nocache'))
+      return false;
+
+    return true;
+  }
+
+  // If the application has HTTP_CACHE disabled, bypass cache lookup.
+  // Otherwise, check the cache for the endpoint
   protected function isCached($cache_key) {
+    if(!$this->isCacheEnabled())
+      return false;
+
+    if(Config::get('request.cachebust')) {
+      // If the application has HTTP_CACHE_BUST enabled, bust the cache instead
+      Log::debug("CACHE BUST: $cache_key");
+      $this->cache->bust($cache_key);
+      return false;
+    }
+
     return ($this->cache->exists($this->cacheKey($cache_key)));
   }
 
@@ -49,23 +72,14 @@ class BaseService {
     $cache_key = $this->getParamValue($params, "cache_key", $this->endpointToCacheKey($endpoint));
     $single_item_array = $this->getParamValue($params, "single_item_array", false);
 
-    // dd($endpoint, $response_key, $http_options, $cache_ttl, $cache_key, $single_item_array);
+    // Uncomment the below line to debug cache busting and averting
+    // dd("request.cachebust", Config::get('request.cachebust'), "request.nocache", Config::get('request.nocache'));
 
-    // If the application has HTTP_CACHE disabled, bypass cache lookup.
-    // Otherwise, check the cache for the endpoint
-    if(env('HTTP_CACHE')) {
-      if($this->isCached($cache_key)) {
-        // If the application has HTTP_CACHE_BUST enabled, bust the cache instead
-        if(env('HTTP_CACHE_BUST')) {
-          Log::debug("CACHE BUST: $cache_key");
-          $this->cache->bust($cache_key);
-        } else {
-          Log::debug("CACHE HIT: $cache_key");
-          return $this->cachedObject($cache_key);
-        }
-      } else {
-        Log::debug("CACHE MISS: $cache_key");
-      }
+    if($this->isCached($cache_key)) {
+      Log::debug("CACHE HIT: $cache_key");
+      return $this->cachedObject($cache_key);
+    } else {
+      Log::debug("CACHE MISS: $cache_key");
     }
 
     $external_response = $this->http()->get($endpoint, $http_options);

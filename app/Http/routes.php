@@ -39,18 +39,21 @@ $api_routes = function() {
   Route::group(['prefix' => 'digitalocean'], function() {
     Route::get('/droplets/{droplet_id}', 'Api\DigitaloceanController@droplet');
     Route::get('/droplets', 'Api\DigitaloceanController@droplets');
+    Route::get('/card', 'Api\DigitaloceanController@card');
     Route::get('/', 'Api\DigitaloceanController@index');
   });
 
   Route::group(['prefix' => 'rubygems'], function() {
     Route::get('/gems/{gem_name}', 'Api\RubyGemsController@gem');
     Route::get('/gems', 'Api\RubyGemsController@gems');
+    Route::get('/card', 'Api\RubyGemsController@card');
     Route::get('/', 'Api\RubyGemsController@index');
   });
 
   Route::group(['prefix' => 'npm'], function() {
     Route::get('/modules/{module_name}', 'Api\NpmController@module');
     Route::get('/modules', 'Api\NpmController@modules');
+    Route::get('/card', 'Api\NpmController@card');
     Route::get('/', 'Api\NpmController@index');
   });
 
@@ -59,6 +62,7 @@ $api_routes = function() {
     Route::get('/users/{username}/cloudcasts', 'Api\MixcloudController@cloudcasts');
     Route::get('/users/{username}', 'Api\MixcloudController@user');
     Route::get('/users', 'Api\MixcloudController@users');
+    Route::get('/card', 'Api\MixcloudController@card');
     Route::get('/', 'Api\MixcloudController@index');
   });
 
@@ -67,6 +71,7 @@ $api_routes = function() {
     Route::get('/users', 'Api\LinkedinController@users');
     Route::get('/positions/{position_id}', 'Api\LinkedinController@position');
     Route::get('/positions', 'Api\LinkedinController@positions');
+    Route::get('/card', 'Api\LinkedinController@card');
     Route::get('/', 'Api\LinkedinController@index');
   });
 
@@ -76,6 +81,7 @@ $api_routes = function() {
     Route::get('/users/{user_id}', 'Api\InstagramController@user');
     Route::get('/users', 'Api\InstagramController@users');
     Route::get('/posts/{post_id}', 'Api\InstagramController@post');
+    Route::get('/card', 'Api\InstagramController@card');
     Route::get('/', 'Api\InstagramController@index');
   });
 
@@ -86,6 +92,7 @@ $api_routes = function() {
     Route::get('/users', 'Api\SoundcloudController@users');
     Route::get('/tracks/{track_id}', 'Api\SoundcloudController@track');
     Route::get('/playlists/{playlist_id}', 'Api\SoundcloudController@playlist');
+    Route::get('/card', 'Api\SoundcloudController@card');
     Route::get('/', 'Api\SoundcloudController@index');
   });
 
@@ -96,17 +103,22 @@ $api_routes = function() {
     Route::get('/tracks', 'Api\ItunesController@tracks');
     Route::get('/wishlist_items/{wishlist_item_id}', 'Api\ItunesController@wishlist_item');
     Route::get('/wishlist_items', 'Api\ItunesController@wishlist_items');
+    Route::get('/card', 'Api\ItunesController@card');
     Route::get('/', 'Api\ItunesController@index');
   });
 
   Route::group(['prefix' => 'twitter'], function() {
-    Route::get('/users/{handle}', 'Api\TwitterController@user');
-    Route::get('/users', 'Api\TwitterController@users');
+    Route::group(['prefix' => '/users'], function() {
+      Route::get('/{handle}/lists', 'Api\TwitterController@lists');
+      Route::get('/{handle}', 'Api\TwitterController@user');
+      Route::get('/', 'Api\TwitterController@users');
+    });
     Route::get('/tweets/latest', 'Api\TwitterController@latestTweet');
     Route::get('/tweets/{tweet_id}', 'Api\TwitterController@tweet');
     Route::get('/tweets', 'Api\TwitterController@tweets');
     Route::get('/media_objects/{media_object_id}', 'Api\TwitterController@media_object');
     Route::get('/media_objects', 'Api\TwitterController@media_objects');
+    Route::get('/card', 'Api\TwitterController@card');
     Route::get('/', 'Api\TwitterController@index');
   });
 
@@ -122,35 +134,42 @@ $api_routes = function() {
     Route::get('/artists', 'Api\LastfmController@artists');
     Route::get('/albums/{album_id}', 'Api\LastfmController@album');
     Route::get('/albums', 'Api\LastfmController@albums');
+    Route::get('/card', 'Api\LastfmController@card');
     Route::get('/', 'Api\LastfmController@index');
   });
 
   Route::group(['prefix' => 'github'], function() {
-    Route::get('/users/{username}/repos', 'Api\GithubController@repos');
-    Route::get('/users/{username}/gists', 'Api\GithubController@gists');
-    Route::get('/users/{username}/organizations', 'Api\GithubController@organizations');
-    Route::get('/users/{username}', 'Api\GithubController@user');
-    Route::get('/users', 'Api\GithubController@users');
-    Route::get('/repos/{repo_name}/languages', 'Api\GithubController@repoLanguages');
-    Route::get('/repos/{repo_name}', 'Api\GithubController@repo');
-    Route::get('/gists/{gist_id}/comments', 'Api\GithubController@gistComments');
-    Route::get('/gists/{gist_id}', 'Api\GithubController@gist');
-    Route::get('/organizations/{organization_name}/repos', 'Api\GithubController@organizationRepos');
-    Route::get('/organizations/{organization_name}/members', 'Api\GithubController@organizationMembers');
-    Route::get('/organizations/{organization_name}', 'Api\GithubController@organization');
-    // Route::get('/pushes/{push_id}', 'Api\GithubController@push');
-    // Route::get('/pushes', 'Api\GithubController@pushes');
-    // Route::get('/commits/{commit_id}', 'Api\GithubController@commit');
-    // Route::get('/commits', 'Api\GithubController@commits');
-    // Route::get('/issues/{issue_id}', 'Api\GithubController@issue');
-    // Route::get('/issues', 'Api\GithubController@issues');
-    // Route::get('/events/{event_id}', 'Api\GithubController@event');
-    // Route::get('/events', 'Api\GithubController@events');
+    Route::group(['prefix' => '/users/{username}'], function() {
+      Route::get('/repos', 'Api\GithubController@repos');
+      Route::get('/gists', 'Api\GithubController@gists');
+      Route::get('/events/{total?}', 'Api\GithubController@events');
+      Route::get('/organizations', 'Api\GithubController@organizations');
+      Route::get('/', 'Api\GithubController@user');
+    });
+
+    Route::group(['prefix' => '/repos/{repo_name}'], function() {
+      Route::get('/languages', 'Api\GithubController@repoLanguages');
+      Route::get('/', 'Api\GithubController@repo');
+    });
+
+    Route::group(['prefix' => '/gists/{gist_id}'], function() {
+      Route::get('/comments', 'Api\GithubController@gistComments');
+      Route::get('/', 'Api\GithubController@gist');
+    });
+
+    Route::group(['prefix' => '/organizations/{organization_name}'], function() {
+      Route::get('/repos', 'Api\GithubController@organizationRepos');
+      Route::get('/members', 'Api\GithubController@organizationMembers');
+      Route::get('/', 'Api\GithubController@organization');
+    });
+
+    Route::get('/card', 'Api\GithubController@card');
     Route::get('/', 'Api\GithubController@index');
   });
 
   Route::group(['prefix' => 'stackexchange'], function() {
     Route::get('/accounts', 'Api\StackexchangeController@accounts');
+    Route::get('/card', 'Api\StackexchangeController@card');
     Route::get('/', function() {
       return response()->json([
         'foo' => 'bar'

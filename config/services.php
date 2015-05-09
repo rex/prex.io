@@ -83,6 +83,8 @@ return [
 	'github' => [
 		'cache_namespace' => 'services:github',
 		'cache_ttl' => 43200,
-		'handle' => 'rex'
+		'handle' => 'rex',
+		'client_id' => env('GITHUB_CLIENT_ID'),
+		'client_secret' => env('GITHUB_CLIENT_SECRET')
 	]
 ];

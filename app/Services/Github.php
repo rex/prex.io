@@ -10,8 +10,25 @@ class Github extends BaseService {
     $this->http_client_options = [
       'base_url' => 'https://api.github.com/',
       'headers' => [
-        'Accept' => 'application/vnd.github.moondragon+json'
+        'Accept' => 'application/vnd.github.moondragon+json',
+        'User-Agent' => 'prex.io'
+      ],
+      'query' => [
+        'per_page' => 100,
+        'client_id' => Config::get('services.github.client_id'),
+        'client_secret' => Config::get('services.github.client_secret')
       ]
+    ];
+  }
+
+  public function card() {
+    $me = $this->getUsername();
+    $my_orgs = $this->organizations($me);
+
+    return [
+      'user' => $this->user($me),
+      'organizations' => $my_orgs,
+      'organization_count' => count($my_orgs)
     ];
   }
 
@@ -22,6 +39,17 @@ class Github extends BaseService {
   public function user($username) {
     $username = $this->getUsername($username);
     return $this->fetchAndCache("users/$username");
+  }
+
+  public function events($username, $total = 100) {
+    $username = $this->getUsername($username);
+    return $this->fetchAndCache("users/$username/events", [
+      'http_options' => [
+        'query' => [
+          'per_page' => $total
+        ]
+      ]
+    ]);
   }
 
   public function repos($username) {
@@ -75,7 +103,7 @@ class Github extends BaseService {
     return $this->fetchAndCache("/orgs/$organization_name/public_members");
   }
 
-  private function getUsername($username) {
+  private function getUsername($username = null) {
     if($username == null || $username == "self")
       return Config::get('services.github.handle');
     else
